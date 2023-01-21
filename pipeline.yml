@@ -6,8 +6,9 @@ pool:
 
 resources:
   repositories: #check out those repositories that you want to scan with Pluto
-  - repository: mygithubrepo
+  - repository: MyGitHubRepo
     type: github
+    endpoint: taherkhan30
     name: taherkhan30/deprecation-test
     ref: master  
 
