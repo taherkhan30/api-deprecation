@@ -1,5 +1,5 @@
 #!/bin/bash
-reposToScan=("[repository_name") # in case of multiple repos, separate them with whitespace, f.ex. ("repo1" "repo2" "repo3")
+reposToScan=("[MyGitHubRepo]") # in case of multiple repos, separate them with whitespace, f.ex. ("repo1" "repo2" "repo3")
       
 for repo in "${reposToScan[@]}"; do
     repoDir="$1/$repo"
