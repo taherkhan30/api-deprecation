@@ -1,15 +1,14 @@
-# api-deprecations-pipeline.yml
 trigger:
-- master
+- main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 resources:
   repositories: #check out those repositories that you want to scan with Pluto
-  - repository: [repository_name]
-    type: git
-    name: [project_name/repository_name]
+  - repository: mygithubrepo
+    type: github
+    name: taherkhan30/deprecation-test
     ref: master  
 
 steps:
@@ -17,7 +16,7 @@ steps:
   submodules: true
   persistCredentials: true
 
-- checkout: '[repository_name]'
+- checkout: MyGitHubRepo
   submodules: true
   persistCredentials: true
 
@@ -34,5 +33,5 @@ steps:
 - task: Bash@3
   displayName: 'Run Kubernetes API deprecations validation with Pluto'
   inputs:
-    filePath: '$(System.DefaultWorkingDirectory)/validate-kube-api-deprecations.sh'
+    filePath: '$(System.DefaultWorkingDirectory)/scan-api-depracations.sh'
     arguments: '$(System.DefaultWorkingDirectory)' # This argument lets the script know the location for checked out repos
