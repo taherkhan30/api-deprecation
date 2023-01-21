@@ -10,7 +10,7 @@ resources:
     type: github
     endpoint: taherkhan30
     name: taherkhan30/deprecation-test
-    # ref: master  
+    ref: main 
 
 steps:
 - checkout: self
@@ -34,5 +34,5 @@ steps:
 - task: Bash@3
   displayName: 'Run Kubernetes API deprecations validation with Pluto'
   inputs:
-    filePath:  '$(Build.SourcesDirectory)/scan-api-depracations.sh'
+    filePath:  '$(System.DefaultWorkingDirectory)/scan-api-depracations.sh'
     arguments: '$(System.DefaultWorkingDirectory)' # This argument lets the script know the location for checked out repos
