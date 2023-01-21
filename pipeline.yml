@@ -21,6 +21,11 @@ steps:
   submodules: true
   persistCredentials: true
 
+- pwsh: |
+    Get-ChildItem $(System.DefaultWorkingDirectory) -Recurse
+  name: DebugCheckout
+  displayName: Debug script checkout
+  
 - task: CmdLine@2
   displayName: 'Install Pluto' # update Pluto version if needed in wget and tar command
   inputs:
