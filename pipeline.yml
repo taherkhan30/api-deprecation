@@ -10,7 +10,7 @@ resources:
     type: github
     endpoint: taherkhan30
     name: taherkhan30/deprecation-test
-    ref: master  
+    # ref: master  
 
 steps:
 - checkout: self
