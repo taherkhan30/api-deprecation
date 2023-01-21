@@ -2,12 +2,12 @@
 reposToScan=("deprecation-test") # in case of multiple repos, separate them with whitespace, f.ex. ("repo1" "repo2" "repo3")
       
 for repo in "${reposToScan[@]}"; do
-    repoDir="$1/$repo"
+    repoDir="$repo"
 
     printf "\n*********** $repo ************\n"
     printf "\nYAML TEMPLATES:\n"
     ./pluto
-    ./pluto detect-files -d "$repoDir" -o markdown
+    ./pluto detect-files -d "$rep oDir" -o markdown
     ./pluto detect-api-resources -owide
     pluto detect-files -d "$repoDir" -o markdown --ignore-deprecations --ignore-removals # 2 last parameters can be removed if you want script to fail in case deprecations/removals have been detected
 
