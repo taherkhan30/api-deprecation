@@ -25,7 +25,7 @@ steps:
     Get-ChildItem $(System.DefaultWorkingDirectory) -Recurse
   name: DebugCheckout
   displayName: Debug script checkout
-  
+
 - task: CmdLine@2
   displayName: 'Install Pluto' # update Pluto version if needed in wget and tar command
   inputs:
@@ -39,5 +39,5 @@ steps:
 - task: Bash@3
   displayName: 'Run Kubernetes API deprecations validation with Pluto'
   inputs:
-    filePath:  '$(System.DefaultWorkingDirectory)/scan-api-depracations.sh'
+    filePath:  '$(System.DefaultWorkingDirectory)/api-deprecation/scan-api-depracations.sh'
     arguments: '$(System.DefaultWorkingDirectory)' # This argument lets the script know the location for checked out repos
