@@ -9,8 +9,8 @@ printf "\n\nTrying cluster $aks_name $aks_resource_group\n"
 az aks get-credentials \
     --resource-group $aks_resource_group \
     --name $aks_name
-$(kubectl get deployment)
-$(kubectl get service)
+./pluto
+./pluto detect-files -d "deprecation-test" -o markdown
 }
 
 
