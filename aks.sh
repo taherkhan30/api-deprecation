@@ -10,7 +10,7 @@ az aks get-credentials \
     --resource-group $aks_resource_group \
     --name $aks_name
 ./pluto
-./pluto detect-files -d "deprecation-test" -o markdown
+./pluto detect-helm
 }
 
 
