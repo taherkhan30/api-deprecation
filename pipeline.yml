@@ -50,11 +50,11 @@ steps:
       tar xzvf pluto_5.10.1_linux_amd64.tar.gz
       echo Pluto downloaded successfully!      
 
-- task: Bash@3
-  displayName: 'Run Kubernetes API deprecations validation with Pluto'
-  inputs:
-    filePath:  '$(System.DefaultWorkingDirectory)/api-deprecation/scan-api-depracations.sh'
-    arguments: '$(System.DefaultWorkingDirectory)' # This argument lets the script know the location for checked out repos
+# - task: Bash@3
+#   displayName: 'Run Kubernetes API deprecations validation with Pluto'
+#   inputs:
+#     filePath:  '$(System.DefaultWorkingDirectory)/api-deprecation/scan-api-depracations.sh'
+#     arguments: '$(System.DefaultWorkingDirectory)' # This argument lets the script know the location for checked out repos
 
 - task: AzureCLI@2
   displayName: 'run pluto commands on AKS Cluster'
