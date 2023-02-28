@@ -46,6 +46,6 @@ steps:
 - task: GitHubComment@0
   inputs:
     gitHubConnection: 'GitHub Management'
-    repositoryName: 'api-deprecation'
-    id:
+    repositoryName: 'taherkhan30/api-deprecation'
+    id: '$(System.PullRequest.PullRequestNumber)'
     comment: 'myComment test'
