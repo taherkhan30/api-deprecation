@@ -40,7 +40,7 @@ steps:
   inputs:
     azureSubscription: 'aks-test'
     scriptType: 'bash'
-    scriptPath: './api-deprecation/aks.sh'
+    scriptPath: '$(System.DefaultWorkingDirectory)/aks.sh'
     # arguments: '${{ parameters.environment_components.aks.subscription }} ${{ parameters.environment_components.aks.resource_group }} ${{ parameters.environment_components.aks.name }} ${{ parameters.environment_components.department }}'
 
 - bash: |
