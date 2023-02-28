@@ -40,11 +40,11 @@ steps:
   inputs:
     azureSubscription: 'aks-test'
     scriptType: 'bash'
-    scriptPath: '$(System.DefaultWorkingDirectory)/api-deprecation/aks.sh'
+    scriptPath: './api-deprecation/aks.sh'
     # arguments: '${{ parameters.environment_components.aks.subscription }} ${{ parameters.environment_components.aks.resource_group }} ${{ parameters.environment_components.aks.name }} ${{ parameters.environment_components.department }}'
 
 - bash: |
-    source '$(System.DefaultWorkingDirectory)/scripts/run_pluto.sh'
+    source '$(System.DefaultWorkingDirectory)/aks.sh'
     formatted_output=${output//\\n/%0D%0A}
     echo "##vso[task.setvariable variable=myComment]$formatted_output"
 
