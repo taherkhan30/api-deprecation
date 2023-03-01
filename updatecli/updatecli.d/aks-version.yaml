@@ -13,7 +13,7 @@ scms:
     kind: github
     spec:
       owner: 'taherkhan30'
-      repository: 'taherkhan30/api-deprecations'
+      repository: 'taherkhan30/api-deprecation'
       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
       username: 'taherkhan30'
       branch: 'test-branch'
