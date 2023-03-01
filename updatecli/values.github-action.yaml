@@ -1,0 +1,17 @@
+github:
+  email: "104018155+hmcts-dependency-updater[bot]@users.noreply.github.com"
+  user: "hmcts-dependency-updater"
+  branch: "main"
+  owner: "hmcts"
+  repository: "api-deprecations"
+environments:
+  sbox:
+    enabled: true
+    aks_name: cft-sbox-00-aks
+    aks_resource_group: cft-sbox-00-rg
+    aks_subscription: DCD-CFTAPPS-SBOX
+  aat:
+    enabled: true
+    aks_name: cft-aat-00-aks
+    aks_resource_group: cft-aat-00-rg
+    aks_subscription: DCD-CFTAPPS-STG
