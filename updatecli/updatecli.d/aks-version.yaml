@@ -14,7 +14,7 @@ scms:
     spec:
       owner: '{{ .github.owner }}'
       repository: '{{ .github.repository }}'
-      token: '${{ secrets.GITHUB_TOKEN }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
       username: 'taherkhan30'
       branch: 'test-branch'
 
