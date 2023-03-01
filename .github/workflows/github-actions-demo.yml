@@ -20,6 +20,8 @@ jobs:
         uses: updatecli/updatecli-action@v2
         with:
           version: v0.38.0
+      - name: Download pluto
+        uses: ./github-action
       # - uses: tibdex/github-app-token@v1
       #   id: generate-token
       #   with:
