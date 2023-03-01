@@ -1,7 +1,7 @@
 github:
   branch: "test-branch"
   owner: "taherkhan30"
-  repository: "api-deprecations"
+  repository: "taherkhan30/api-deprecations"
   token: ${{ secrets.GITHUB_TOKEN }}
 environments:
   sbox:
