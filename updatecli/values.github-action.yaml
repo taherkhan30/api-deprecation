@@ -1,9 +1,8 @@
 github:
-  email: "104018155+hmcts-dependency-updater[bot]@users.noreply.github.com"
-  user: "hmcts-dependency-updater"
-  branch: "main"
+  branch: "test-branch"
   owner: "taherkhan30"
   repository: "api-deprecations"
+  token: ${{ secrets.GITHUB_TOKEN }}
 environments:
   sbox:
     enabled: true
