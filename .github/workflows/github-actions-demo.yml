@@ -22,11 +22,11 @@ jobs:
           version: v0.38.0
       - name: Download Pluto
         uses: FairwindsOps/pluto/github-action@master
-      # - uses: tibdex/github-app-token@v1
-      #   id: generate-token
-      #   with:
-      #     app_id: ${{ secrets.DEPENDENCY_UPDATER_APP_ID }}
-      #     private_key: ${{ secrets.DEPENDENCY_UPDATER_APP_PRIVATE_KEY }}
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.DEPENDENCY_UPDATER_APP_ID }}
+          private_key: ${{ secrets.DEPENDENCY_UPDATER_APP_PRIVATE_KEY }}
       - name: Install YQ
         uses: mikefarah/yq@master
       - name: Run Updatecli in Dry Run mode
