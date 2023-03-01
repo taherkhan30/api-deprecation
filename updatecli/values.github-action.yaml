@@ -9,13 +9,3 @@ environments:
     aks_name: my-cluster
     aks_resource_group: rg-cluster
     aks_subscription: Pay-As-You-Go
-  aat:
-    enabled: true
-    aks_name: my-cluster
-    aks_resource_group: rg-cluster
-    aks_subscription: Pay-As-You-Go
-  demo:
-    enabled: true
-    aks_name: my-cluster
-    aks_resource_group: rg-cluster
-    aks_subscription: Pay-As-You-Go
