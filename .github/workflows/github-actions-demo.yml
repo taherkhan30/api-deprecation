@@ -1,18 +1,48 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: updateclitest
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
 jobs:
-  Explore-GitHub-Actions:
+  updatecli:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
+      - name: Checkout
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: 6a3636a7-698b-4351-b2fb-70b9aee5a4a0
+          tenant-id: 3ab0755e-cf30-479b-9ff3-a3ca5775875f
+          allow-no-subscriptions: true
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2
+        with:
+          version: v0.38.0
+      # - uses: tibdex/github-app-token@v1
+      #   id: generate-token
+      #   with:
+      #     app_id: ${{ secrets.DEPENDENCY_UPDATER_APP_ID }}
+      #     private_key: ${{ secrets.DEPENDENCY_UPDATER_APP_PRIVATE_KEY }}
+      # - name: Install YQ
+      #   uses: mikefarah/yq@master
+      # - name: Run Updatecli in Dry Run mode
+      #   run: |
+      #     yq -r '.environments | to_entries | map(select(.value.enabled == true)) | .[].key' updatecli/values.github-action.yaml | while read i
+      #     do
+      #         CURRENT_ITER_ENVIRONMENT="$i" updatecli diff --config ./updatecli/updatecli.d --values ./updatecli/values.github-action.yaml
+      #     done
+      #   env:
+      #     UPDATECLI_GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+      # - name: Run Updatecli in Apply mode
+      #   if: github.ref == 'refs/heads/main'
+      #   run: |
+      #     yq -r '.environments | to_entries | map(select(.value.enabled == true)) | .[].key' updatecli/values.github-action.yaml | while read i
+      #     do
+      #         CURRENT_ITER_ENVIRONMENT="$i" updatecli apply --config ./updatecli/updatecli.d --values ./updatecli/values.github-action.yaml
+      #     done
+      #   env:
+      #     UPDATECLI_GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
