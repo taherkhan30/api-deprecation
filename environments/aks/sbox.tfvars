@@ -1,1 +1,1 @@
-kubernetes_cluster_version        = "1.23"
+kubernetes_cluster_version        = "1.22"
