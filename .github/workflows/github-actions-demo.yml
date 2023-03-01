@@ -15,9 +15,7 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          client-id: 6a3636a7-698b-4351-b2fb-70b9aee5a4a0
-          tenant-id: 3ab0755e-cf30-479b-9ff3-a3ca5775875f
-          allow-no-subscriptions: true
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
       - name: Install Updatecli in the runner
         uses: updatecli/updatecli-action@v2
         with:
