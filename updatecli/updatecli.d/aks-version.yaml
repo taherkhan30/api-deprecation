@@ -26,11 +26,10 @@ sources:
       command: ./updatecli/get-latest-aks-upgrade-version.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
       versionfilter:
         kind: semver
-        pattern: "~1.25.5"
-    # transformers:
-    #   - findsubmatch:
-    #       pattern: ((\d+\.)?(\d+))?(\*|\.\d+)
-    #       captureindex: 1
+    transformers:
+      - findsubmatch:
+          pattern: ((\d+\.)?(\d+))?(\*|\.\d+)
+          captureindex: 1
 
 targets:
   default:
@@ -39,7 +38,7 @@ targets:
     kind: file
     scmid: default
     spec:
-      file: "/tmp/updatecli/github/taherkhan30/api-deprecation/environments/aks/sbox.tfvars"
+      file: "environments/aks/{{ $environment }}.tfvars"
       matchpattern: 'kubernetes_cluster_version\s+=\s+"(\d+\.)?(\d+\.)?(\*|\d+)\"'
       content: 'kubernetes_cluster_version        = "{{ source `latestAksVersion` }}"'
 
