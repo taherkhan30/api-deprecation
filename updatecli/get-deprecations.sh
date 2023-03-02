@@ -18,4 +18,3 @@ get_deprecations () {
 }
 $(get_deprecations)
 OUTPUT=$(get_deprecations)
-echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
