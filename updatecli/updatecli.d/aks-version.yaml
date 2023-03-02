@@ -31,6 +31,19 @@ sources:
           pattern: ((\d+\.)?(\d+))?(\*|\.\d+)
           captureindex: 0
 
+sources:
+  latestAksVersion:
+    kind: shell
+    name: Get latest AKS version for a given region
+    spec:
+      command: bash ./updatecli/get-deprecations.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
+      versionfilter:
+        kind: semver
+    transformers:
+      - findsubmatch:
+          pattern: ((\d+\.)?(\d+))?(\*|\.\d+)
+          captureindex: 0
+
 targets:
   default:
     sourceid: latestAksVersion
