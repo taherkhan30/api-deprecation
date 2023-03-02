@@ -40,7 +40,7 @@ targets:
     spec:
       file: "environments/aks/{{ $environment }}.tfvars"
       forcecreate: true
-      matchpattern: 'kubernetes_cluster_version  = "1\.25"'
+      matchpattern: 'kubernetes_cluster_version\s+=\s+"(\d+\.)?(\d+\.)?(\*|\d+)\"'
       content: 'kubernetes_cluster_version       = "{{ source `latestAksVersion` }}"'
 
 pullrequests:
