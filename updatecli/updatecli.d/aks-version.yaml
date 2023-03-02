@@ -39,7 +39,7 @@ targets:
     kind: file
     scmid: default
     spec:
-      file: "environments/aks/{{ $environment }}.tfvars"
+      file: "/tmp/updatecli/github/taherkhan30/api-deprecation/environments/aks/sbox.tfvars"
       matchpattern: 'kubernetes_cluster_version\s+=\s+"(\d+\.)?(\d+\.)?(\*|\d+)\"'
       content: 'kubernetes_cluster_version        = "{{ source `latestAksVersion` }}"'
 
