@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+ #!/bin/bash
+       
 set -x
 az account set --subscription 'Pay-As-You-Go'
 aks_resource_group='rg-cluster'
