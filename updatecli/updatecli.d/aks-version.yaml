@@ -38,7 +38,7 @@ targets:
     kind: file
     scmid: default
     spec:
-      file: "environments/{{ $environment }}.tfvars"
+      file: "environments/aks/{{ $environment }}.tfvars"
       matchpattern: 'kubernetes_cluster_version\s+=\s+"(\d+\.)?(\d+\.)?(\*|\d+)\"'
       content: 'kubernetes_cluster_version        = "{{ source `latestAksVersion` }}"'
 
