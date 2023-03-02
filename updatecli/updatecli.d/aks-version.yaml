@@ -1,7 +1,7 @@
 ---
 version: 0.33.3
 name: "Update aks version"
-{{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT") }}
+{{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT"). }}
 {{ $aks_name := (index .environments $environment).aks_name }}
 {{ $aks_resource_group := (index .environments $environment).aks_resource_group }}
 {{ $aks_subscription := (index .environments $environment).aks_subscription }}
@@ -24,12 +24,12 @@ sources:
     name: Get latest AKS version for a given region
     spec:
       command: bash ./updatecli/get-latest-aks-upgrade-version.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
-      versionfilter:
-        kind: regex
-    transformers:
-      - findsubmatch:
-          pattern: (1\.25\.5)
-          captureindex: 1
+    #   versionfilter:
+    #     kind: regex
+    # transformers:
+    #   - findsubmatch:
+    #       pattern: (1\.25\.5)
+    #       captureindex: 1
 
 targets:
   default:
