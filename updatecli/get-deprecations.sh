@@ -10,7 +10,7 @@ get-deprecations () {
     az aks get-credentials \
         --resource-group "${aks_resource_group}" \
         --name "${aks_name}" \
-    output=`./pluto detect - -o markdown --ignore-deprecations --ignore-removals`
+    output=`./pluto detect-helm -o markdown --ignore-deprecations --ignore-removals`
     echo $output
     export output
 }
