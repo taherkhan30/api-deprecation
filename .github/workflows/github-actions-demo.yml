@@ -45,6 +45,9 @@ jobs:
         run: |
           OUTPUT=$(bash ./updatecli/get-deprecations.sh --exit-zero)
           echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
+      - name: Using the previously defined environment variable
+        run: |
+          echo ${{ env.MESSAGE }}
       - name: Post result to PR
         uses: mshick/add-pr-comment@v1
         with:
