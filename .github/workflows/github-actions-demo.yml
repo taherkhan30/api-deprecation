@@ -42,18 +42,20 @@ jobs:
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
-        run: |
-          OUTPUT=$(bash ./updatecli/get-deprecations.sh)
-          echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
-      - name: Using the previously defined environment variable
-        run: |
-          echo ${{ env.MESSAGE }}
+        uses: mathiasvr/command-output@v1
+        continue-on-error: true
+        id: cmd
+        with:
+          run: bash ./updatecli/get-deprecations.sh
+      - run: echo Command succeeded
+        if: ${{ steps.cmd.outputs.stdout }}
+      - run: echo Command failed
+        if: ${{ steps.cmd.outputs.stderr }}
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
              Hello world ! :wave:
-             ${{ env.MESSAGE }}
           pr_number: ${{ github.event.number }}
       - name: pwd
         run: pwd
