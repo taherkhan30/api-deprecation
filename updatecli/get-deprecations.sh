@@ -11,7 +11,7 @@ get_deprecations () {
     az aks get-credentials \
         --resource-group "${aks_resource_group}" \
         --name "${aks_name}" --admin
-    `pluto`
+    `pluto detect helm -owide`
     `kubectl get namespaces`
 }
 $(get_deprecations)
