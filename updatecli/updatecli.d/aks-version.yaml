@@ -23,12 +23,12 @@ sources:
     kind: shell
     name: Get latest AKS version for a given region
     spec:
-      command: ./updatecli/get-latest-aks-upgrade-version.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
+      command: bash ./updatecli/get-latest-aks-upgrade-version.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
       versionfilter:
-        kind: semver
+        kind: regex
     transformers:
       - findsubmatch:
-          pattern: (1\.25\.9)
+          pattern: (1\.25\.5)
           captureindex: 1
 
 targets:
