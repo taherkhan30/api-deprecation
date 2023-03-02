@@ -48,12 +48,11 @@ jobs:
       - name: Using the previously defined environment variable
         run: |
           echo ${{ env.MESSAGE }}
-      - name: Post result to PR
-        uses: mshick/add-pr-comment@v1
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          message: ${{ env.MESSAGE }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+          message: |
+             Hello world ! :wave:
+          pr_number: ${{ github.event.number }}
       - name: pwd
         run: pwd
