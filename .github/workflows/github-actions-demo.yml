@@ -42,14 +42,16 @@ jobs:
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
-        run: bash ./updatecli/get-deprecations.sh
+        run: |
+          bash ./updatecli/get-deprecations.sh
+          echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
       - name: pwd
         run: pwd
       - name: Post result to PR
         uses: mshick/add-pr-comment@v1
         with:
           message: |
-            **Hello**
+            ${{ env.MESSAGE }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
           allow-repeats: false # This is the default
