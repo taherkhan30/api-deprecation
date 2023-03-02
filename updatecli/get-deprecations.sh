@@ -6,7 +6,9 @@ aks_resource_group='rg-cluster'
 aks_name='my-cluster'
 environment=sbox
 
-# get pluto output 
+# get cluster infp 
+
+# loopp through enabled clusters and get deprecations 
 get_deprecations () {
     az aks get-credentials \
         --resource-group "${aks_resource_group}" \
@@ -15,4 +17,5 @@ get_deprecations () {
     kubectl get namespaces
 }
 $(get_deprecations)
-DEPRECATIONS=$(get_deprecations)
+OUTPUT=$(get_deprecations)
+echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
