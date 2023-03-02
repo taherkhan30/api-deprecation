@@ -42,5 +42,7 @@ jobs:
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
-        run: ./updatecli/get-deprecations.sh
+        run: bash ./updatecli/get-deprecations.sh
+      - name: pwd
+        run: pwd
           
