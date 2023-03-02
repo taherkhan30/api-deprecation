@@ -19,7 +19,8 @@ get_upgrades () {
 
 }
 
-# UPGRADE_VERSION=$(get_upgrades)
+$(get_upgrades)
+
 
 # # For environments usually only running one cluster at a time
 # # check the second cluster if response from 00 is empty
@@ -32,4 +33,3 @@ get_upgrades () {
 
 # fi
 
-# echo "${UPGRADE_VERSION}"
