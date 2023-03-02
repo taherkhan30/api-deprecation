@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 set -x
 az account set --subscription 'Pay-As-You-Go'
 aks_resource_group='rg-cluster'
@@ -14,6 +14,6 @@ get-deprecations () {
     echo $output
     export output
 }
-
+$(get_deprecations)
 DEPRECATIONS=$(get_deprecations)
 echo "${DEPRECATIONS}"
