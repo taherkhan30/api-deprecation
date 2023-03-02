@@ -25,6 +25,7 @@ jobs:
       - name: Pluto exists?
         run: |
           pluto version
+          ./pluto
       # - uses: tibdex/github-app-token@v1
       #   id: generate-token
       #   with:
@@ -50,5 +51,5 @@ jobs:
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
-        run: pluto detect-helm 
+        run: ./updatecli/get-deprecations.sh
           
