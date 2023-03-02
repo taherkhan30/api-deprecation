@@ -1,5 +1,5 @@
 cluster_count                     = 2
-kubernetes_cluster_version        = "1.25.5"
+kubernetes_cluster_version        = "1.25"
 kubernetes_cluster_ssh_key        = ""
 enable_user_system_nodepool_split = true
 project_acr_enabled               = true
