@@ -24,8 +24,9 @@ sources:
     name: Get latest AKS version for a given region
     spec:
       command: ./updatecli/get-latest-aks-upgrade-version.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
-    #   versionfilter:
-    #     kind: regex
+      versionfilter:
+        kind: regex
+        pattern: "1.(\d*).(\d*)$"
     # transformers:
     #   - findsubmatch:
     #       pattern: (1\.25\.5)
