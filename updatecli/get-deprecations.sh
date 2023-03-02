@@ -10,8 +10,9 @@ environment=sbox
 get_deprecations () {
     az aks get-credentials \
         --resource-group "${aks_resource_group}" \
-        --name "${aks_name}" --admin \
+        --name "${aks_name}" --admin
     `pluto`
+    `kubectl get namespaces`
 }
 $(get_deprecations)
 DEPRECATIONS=$(get_deprecations)
