@@ -53,6 +53,7 @@ jobs:
         with:
           message: |
              Hello world ! :wave:
+             ${{ env.MESSAGE }}
           pr_number: ${{ github.event.number }}
       - name: pwd
         run: pwd
