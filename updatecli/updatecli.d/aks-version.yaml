@@ -31,15 +31,6 @@ sources:
           pattern: ((\d+\.)?(\d+))?(\*|\.\d+)
           captureindex: 0
 
-conditions:
-  checkIfapisaredeprecated:
-    name: run pluto commands
-    scmid: default
-    kind: shell
-    disablesourceinput: true
-    spec:
-      command: bash ./updatecli/get-deprecations.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
-
 targets:
   default:
     sourceid: latestAksVersion

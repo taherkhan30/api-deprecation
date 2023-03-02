@@ -46,3 +46,6 @@ jobs:
           done
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: run pluto 
+        run: sh ./updatecli/get-deprecations.sh
+          
