@@ -4,15 +4,18 @@ az account set --subscription 'Pay-As-You-Go'
 aks_resource_group='rg-cluster'
 aks_name='my-cluster'
 department='cft'
-{
-printf "\n\nTrying cluster $aks_name $aks_resource_group\n"
-az aks get-credentials \
-    --resource-group $aks_resource_group \
-    --name $aks_name
-output=`./pluto detect - -o markdown --ignore-deprecations --ignore-removals`
-echo $output
+
+# get pluto output 
+get-deprecations () {
+    az aks get-credentials \
+        --resource-group "${aks_resource_group}" \
+        --name "${aks_name}" \
+    output=`./pluto detect - -o markdown --ignore-deprecations --ignore-removals`
+    echo $output
+    export output
 }
 
+DEPRECATIONS=$(get_deprecations)
 
 # #! /usr/bin/env bash
 # set -x

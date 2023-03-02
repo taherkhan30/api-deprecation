@@ -35,14 +35,3 @@ fi
 
 echo "${UPGRADE_VERSION}"
 
-# # get pluto output 
-# get-deprecations () {
-#     az aks get-credentials \
-#         --resource-group "${aks_resource_group}" \
-#         --name "${aks_name}" \
-#     output=`./pluto detect - -o markdown --ignore-deprecations --ignore-removals`
-#     echo $output
-    
-# }
-
-# DEPRECATIONS=$(get_deprecations)
