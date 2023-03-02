@@ -25,11 +25,11 @@ sources:
     spec:
       command: ./updatecli/get-latest-aks-upgrade-version.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
       versionfilter:
-        kind: regex
-        pattern: "1.(\d*).(\d*)$"
+        kind: semver
+        pattern: "~1.25.5"
     # transformers:
     #   - findsubmatch:
-    #       pattern: (1\.25\.5)
+    #       pattern: ((\d+\.)?(\d+))?(\*|\.\d+)
     #       captureindex: 1
 
 targets:
