@@ -10,7 +10,7 @@ get_upgrades () {
   az aks get-upgrades \
       --name "${aks_name}" \
       --resource-group "${aks_resource_group}" \
-      --subscription "${aks_subscription}" 
+      --subscription "${aks_subscription}" \
       | jq -r '
       if (.controlPlaneProfile.upgrades|map(select(.isPreview == null)) == []) then
           .controlPlaneProfile.kubernetesVersion
