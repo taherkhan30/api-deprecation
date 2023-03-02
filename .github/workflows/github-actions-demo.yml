@@ -45,8 +45,6 @@ jobs:
         run: |
           OUTPUT=$(bash ./updatecli/get-deprecations.sh --exit-zero)
           echo "MESSAGE=$OUTPUT" >> $GITHUB_ENV
-      - name: pwd
-        run: pwd
       - name: Post result to PR
         uses: mshick/add-pr-comment@v1
         with:
@@ -54,3 +52,5 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
           allow-repeats: false # This is the default
+      - name: pwd
+        run: pwd
