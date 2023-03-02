@@ -39,7 +39,6 @@ conditions:
     disablesourceinput: true
     spec:
       command: bash ./updatecli/get-deprecations.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
-      content: 'pluto       = "{{ source `plutooutput` }}"'
 
 targets:
   default:
