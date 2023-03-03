@@ -46,7 +46,7 @@ jobs:
         run: bash ./updatecli/get-deprecations.sh | tee prettier-report.txt
       - name: Get coverage output
         id: get_coverage
-        run: echo "::set-output name=coverage::$(awk '/^Lines/ { print $2 }' < prettier-report.txt)"
+        run: echo "::set-output name=coverage < prettier-report.txt)"
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
