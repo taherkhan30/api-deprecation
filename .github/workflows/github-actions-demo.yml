@@ -68,4 +68,4 @@ jobs:
         with:
           message: |
             Pluto Output: ${{steps.coverage.outputs.text}}
-          pr_number: steps.find-pull-request.outputs.number # This will comment on pull request #123
+          pr_number: ${{steps.find-pull-request.outputs.number}} # This will comment on pull request #123
