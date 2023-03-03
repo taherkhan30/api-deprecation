@@ -53,5 +53,6 @@ jobs:
         with:
           message: ${{ env.EOF }}
           pr_number: ${{ github.event.number }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: pwd
         run: pwd
