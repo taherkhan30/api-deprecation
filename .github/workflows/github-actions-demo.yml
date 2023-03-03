@@ -43,8 +43,7 @@ jobs:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
         id: pluto
-        run: ./updatecli/get-deprecations.sh > output.txt
-        shell: bash
+        run: bash ./updatecli/get-deprecations.sh > output.txt
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
         with:
