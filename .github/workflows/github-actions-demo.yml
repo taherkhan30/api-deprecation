@@ -43,7 +43,7 @@ jobs:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
         id: pluto
-        run: bash ./updatecli/get-deprecations.sh) | tee prettier-report.txt
+        run: bash ./updatecli/get-deprecations.sh)
       - name: Get coverage output
         id: get_coverage
         run: echo "::set-output name=coverage::$(awk '/^Lines/ { print $2 }' < prettier-report.txt)"
