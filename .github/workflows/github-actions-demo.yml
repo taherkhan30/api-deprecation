@@ -65,5 +65,5 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            Hello world ! :wave:
+            Pluto Output: ${{steps.coverage.outputs.text}}
           pr_number: 3 # This will comment on pull request #123
