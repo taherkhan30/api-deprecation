@@ -49,10 +49,9 @@ jobs:
           echo -e "$(cat output.txt)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
+        uses: mshick/add-pr-comment@v1
         with:
-          message: |
-           ${{ env.EOF }}
+          message: ${{ env.EOF }}
           pr_number: ${{ github.event.number }}
       - name: pwd
         run: pwd
