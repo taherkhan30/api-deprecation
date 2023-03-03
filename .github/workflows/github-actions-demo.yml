@@ -54,7 +54,7 @@ jobs:
         run: cat ./output.txt
       - name: Get coverage output
         id: get_coverage
-        run: echo "::set-output name=coverage::$(output.txt)"
+        run: echo "::set-output name=coverage::$(./output.txt)"
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
