@@ -49,16 +49,18 @@ jobs:
         shell: bash 
         run: |
           bash ./.github/get-deprecations.sh > output.txt
-      - name: echo output
-        if: always()
-        run: cat ./output.txt 
+      - name: print 
+        uses: pCYSl5EDgo/cat@master
+        id: coverage
+        with:
+          path: ./output.txt
       - name: Get coverage output
         id: get_coverage
         run: echo "::set-output name=coverage::5"
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
-            Coverage found ${{steps.get_coverage.outputs.coverage}}
+            Coverage found ${{steps.coverage.outputs.text}}
             🌏
             !
           repo-token: ${{ secrets.GITHUB_TOKEN }}
