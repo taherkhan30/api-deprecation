@@ -44,7 +44,7 @@ jobs:
       - name: run pluto 
         id: pluto
         run: | 
-          EOF=$(`pluto detect-helm`) 
+          EOF=$(pluto detect-helm) 
           echo "RESULTS<<EOF" >> $GITHUB_ENV
           echo -e "$(cat output.txt)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
