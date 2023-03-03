@@ -52,3 +52,15 @@ jobs:
       - name: echo output
         if: always()
         run: cat ./output.txt
+      - name: Get coverage output
+        id: get_coverage
+        run: echo "::set-output name=coverage::$(output.txt)"
+      - uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+            Coverage found ${{steps.get_coverage.outputs.coverage}}
+            🌏
+            !
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          allow-repeats: false # This is the default
