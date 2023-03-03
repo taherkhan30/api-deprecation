@@ -44,6 +44,15 @@ jobs:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Print GITHUB_WORKSPACE
         run: echo ${GITHUB_WORKSPACE}
+      - name: Find Pull Request
+        uses: juliangruber/find-pull-request-action@v1
+        id: find-pull-request
+        with:
+          branch: updatecli_aks_version_sbox
+      - run: echo "Pull Request ${number} (${sha})"
+        env:
+          number: ${{ steps.find-pull-request.outputs.number }}
+          sha: ${{ steps.find-pull-request.outputs.head-sha }}
       - name: run pluto 
         id: pluto
         shell: bash 
@@ -54,16 +63,9 @@ jobs:
         id: coverage
         with:
           path: ./output.txt
-      - uses: mshick/add-pr-comment@v1
-        with:
-          message: |
-            Pluto Output: ${{steps.coverage.outputs.text}}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
             Pluto Output: ${{steps.coverage.outputs.text}}
-          pr_number: 3 # This will comment on pull request #123
+          pr_number: steps.find-pull-request.outputs.number # This will comment on pull request #123
