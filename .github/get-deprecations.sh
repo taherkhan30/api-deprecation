@@ -17,4 +17,4 @@ get_deprecations () {
     kubectl get namespaces
 }
 OUTPUT=$(get_deprecations)
-export OUTPUT
+exit 123

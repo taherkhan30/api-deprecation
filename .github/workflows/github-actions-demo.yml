@@ -51,4 +51,4 @@ jobs:
           bash ./.github/get-deprecations.sh > output.txt
       - name: echo output
         if: always()
-        run: cat output.txt
+        run: cat ${GITHUB_WORKSPACE}/output.txt
