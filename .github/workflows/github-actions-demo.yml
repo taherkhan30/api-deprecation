@@ -44,7 +44,7 @@ jobs:
       - name: run pluto 
         id: pluto
         run: | 
-          EOF=$( bash ./updatecli/get-deprecations.sh) 
+          EOF=$(`pluto detect-helm`) 
           echo "RESULTS<<EOF" >> $GITHUB_ENV
           echo -e "$(cat output.txt)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
