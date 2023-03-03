@@ -49,7 +49,7 @@ jobs:
       - name: Set the value in bash
         id: step_one
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          EOF=$(today = `date +%m-%d-%Y`)
           echo "JSON_RESPONSE<<$EOF" >> $GITHUB_ENV
           curl https://example.com >> $GITHUB_ENV
           echo "$EOF" >> $GITHUB_ENV
@@ -63,7 +63,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-             Hello world ! :wave:
+            ${{ steps.step_one.outputs.JSON_RESPONSE }}
           pr_number: ${{ github.event.number }}
       - name: pwd
         run: pwd
