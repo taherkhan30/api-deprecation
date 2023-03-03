@@ -43,16 +43,15 @@ jobs:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
         id: pluto
-        run: bash ./updatecli/get-deprecations.sh | tee prettier-report.txt
-      - name: Get coverage output
-        id: get_coverage
-        run: echo "::set-output name=coverage < prettier-report.txt)"
-      - uses: mshick/add-pr-comment@v1
+        run: ./updatecli/get-deprecations.sh > output.txt
+        shell: bash
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
         with:
-          message: |
-            Coverage found ${{steps.get_coverage.outputs.coverage}}
-            🌏
-            !
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+          name: output
+          path: output.txt
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat output.txt`
+          echo The result is $value
