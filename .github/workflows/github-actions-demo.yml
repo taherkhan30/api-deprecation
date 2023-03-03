@@ -39,29 +39,27 @@ jobs:
           yq -r '.environments | to_entries | map(select(.value.enabled == true)) | .[].key' updatecli/values.github-action.yaml | while read i
           do
               CURRENT_ITER_ENVIRONMENT="$i" updatecli apply --config ./updatecli/updatecli.d --values ./updatecli/values.github-action.yaml
+
           done
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print GITHUB_WORKSPACE
-        run: echo ${GITHUB_WORKSPACE}
+      - name: run pluto 
+        shell: bash 
+        run: |
+          bash ./updatecli/get-deprecations.sh > output.txt
+      - name: cat output
+        uses: pCYSl5EDgo/cat@master
+        id: coverage
+        with:
+          path: ./output.txt
       - name: Find Pull Request
         uses: juliangruber/find-pull-request-action@v1
         id: find-pull-request
         with:
           branch: updatecli_aks_version_sbox
-      - name: run pluto 
-        id: pluto
-        shell: bash 
-        run: |
-          bash ./.github/get-deprecations.sh > output.txt
-      - name: print 
-        uses: pCYSl5EDgo/cat@master
-        id: coverage
-        with:
-          path: ./output.txt
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
             Pluto Output: ${{steps.coverage.outputs.text}}
-          pr_number: ${{steps.find-pull-request.outputs.number}} # This will comment on pull request #123
+          pr_number: ${{steps.find-pull-request.outputs.number}}
