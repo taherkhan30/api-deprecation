@@ -49,7 +49,7 @@ jobs:
       - name: run pluto 
         id: pluto
         run: | 
-          EOF=$(./updatecli/get-deprecations.sh) 
+          EOF=$( bash ./updatecli/get-deprecations.sh) 
           echo "RESULTS<<EOF" >> $GITHUB_ENV
           echo -e "$(cat output.txt)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
