@@ -51,16 +51,13 @@ jobs:
           bash ./.github/get-deprecations.sh > output.txt
       - name: echo output
         if: always()
-        run: output=$( cat ./output.txt )
-      - name: Get coverage output
-        id: get_coverage
-        run: echo "::set-output name=coverage::$(output)"
+        run: echo "coverage=$(cat ./output.txt)" >> $GITHUB_OUTPUT
+      # - name: Get coverage output
+      #   id: get_coverage
+      #   run: echo "::set-output name=coverage::"
       - uses: mshick/add-pr-comment@v1
         with:
-          message: |
-            Coverage found ${{steps.get_coverage.outputs.coverage}}
-            🌏
-            !
+          message: ${{ env.coverage }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
           allow-repeats: false # This is the default
