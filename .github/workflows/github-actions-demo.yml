@@ -43,7 +43,7 @@ jobs:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
         id: pluto
-        run: bash ./updatecli/get-deprecations.sh | tee output.txt
+        run: bash ./updatecli/get-deprecations.sh
           echo "RESULTS<<EOF" >> $GITHUB_ENV
           echo -e "$(cat output.txt)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
