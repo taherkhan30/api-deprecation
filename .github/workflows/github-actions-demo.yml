@@ -6,6 +6,7 @@ permissions:
   id-token: write
   contents: write
   pull-requests: write
+  issues: write
 jobs:
   updatecli:
     runs-on: ubuntu-latest
@@ -41,9 +42,14 @@ jobs:
           done
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print GITHUB_WORKSPACE
+        run: echo ${GITHUB_WORKSPACE}
       - name: run pluto 
         id: pluto
-        run: bash ./updatecli/get-deprecations.sh > output.txt
+        shell: bash 
+        run: |
+          chmod +x "${pwd}/api-deprecations/api-deprecations/get-deprecations.sh"
+          sh ./updatecli/get-deprecations.sh > output.txt
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
         with:
