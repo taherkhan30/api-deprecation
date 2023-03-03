@@ -48,7 +48,7 @@ jobs:
         id: pluto
         shell: bash 
         run: |
-          chmod +x "${pwd}/api-deprecations/api-deprecations/get-deprecations.sh"
+          chmod +x ${GITHUB_WORKSPACE}/get-deprecations.sh"
           sh ./updatecli/get-deprecations.sh > output.txt
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
