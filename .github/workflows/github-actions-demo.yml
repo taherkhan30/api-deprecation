@@ -43,16 +43,16 @@ jobs:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
         id: pluto
-        run: | 
-          EOF=$(pluto detect-helm) 
-          echo "RESULTS<<EOF" >> $GITHUB_ENV
-          echo -e "$(cat output.txt)" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-      - name: Comment PR
-        uses: mshick/add-pr-comment@v1
+        run: bash ./updatecli/get-deprecations.sh) | tee prettier-report.txt
+      - name: Get coverage output
+        id: get_coverage
+        run: echo "::set-output name=coverage::$(awk '/^Lines/ { print $2 }' < prettier-report.txt)"
+      - uses: mshick/add-pr-comment@v1
         with:
-          message: ${{ env.EOF }}
-          pr_number: ${{ github.event.number }}
+          message: |
+            Coverage found ${{steps.get_coverage.outputs.coverage}}
+            🌏
+            !
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: pwd
-        run: pwd
+          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          allow-repeats: false # This is the default
