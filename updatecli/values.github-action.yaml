@@ -9,3 +9,8 @@ environments:
     aks_name: my-cluster
     aks_resource_group: rg-cluster
     aks_subscription: Pay-As-You-Go
+  demo:
+    enabled: true
+    aks_name: cft-demo-00-aks
+    aks_resource_group: cft-demo-00-rg
+    aks_subscription: DCD-CFTAPPS-DEMO

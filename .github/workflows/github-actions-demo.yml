@@ -49,10 +49,6 @@ jobs:
         id: find-pull-request
         with:
           branch: updatecli_aks_version_sbox
-      - run: echo "Pull Request ${number} (${sha})"
-        env:
-          number: ${{ steps.find-pull-request.outputs.number }}
-          sha: ${{ steps.find-pull-request.outputs.head-sha }}
       - name: run pluto 
         id: pluto
         shell: bash 
