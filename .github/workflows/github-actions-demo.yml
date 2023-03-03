@@ -51,10 +51,10 @@ jobs:
           bash ./.github/get-deprecations.sh > output.txt
       - name: echo output
         if: always()
-        run: cat ./output.txt
+        run: OUTPUT=$(cat ./output.txt)
       - name: Get coverage output
         id: get_coverage
-        run: echo "::set-output name=coverage::$( chmod +x ./output.txt)"
+        run: echo "::set-output name=coverage::$(OUTPUT)"
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
