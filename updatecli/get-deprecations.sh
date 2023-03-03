@@ -13,7 +13,7 @@ get_deprecations () {
     az aks get-credentials \
         --resource-group "${aks_resource_group}" \
         --name "${aks_name}" --admin
-    pluto detect-helm 
+    ./pluto detect-helm 
     kubectl get namespaces
 }
 $(get_deprecations) > output.txt

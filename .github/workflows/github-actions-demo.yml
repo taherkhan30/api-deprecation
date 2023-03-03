@@ -41,9 +41,14 @@ jobs:
           done
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set color
+        id: random-color-generator
+        run: echo "SELECTED_COLOR=green" >> $GITHUB_OUTPUT
+      - name: Get color
+        run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
       - name: run pluto 
         id: pluto
-        run: bash ./updatecli/get-deprecations.sh
+        run: bash ./updatecli/get-deprecations.sh 
           echo "RESULTS<<EOF" >> $GITHUB_ENV
           echo -e "$(cat output.txt)" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
