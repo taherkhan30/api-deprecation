@@ -42,15 +42,11 @@ jobs:
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: run pluto 
-        uses: mathiasvr/command-output@v1
-        continue-on-error: true
-        id: cmd
-        with:
-          run: bash ./updatecli/get-deprecations.sh
-      - run: echo Command succeeded
-        if: ${{ steps.cmd.outputs.stdout }}
-      - run: echo Command failed
-        if: ${{ steps.cmd.outputs.stderr }}
+        id: pluto
+        run: bash ./updatecli/get-deprecations.sh | tee output.txt
+          echo "RESULTS<<EOF" >> $GITHUB_ENV
+          echo -e "$(cat output.txt)" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
