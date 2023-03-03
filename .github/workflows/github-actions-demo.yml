@@ -57,7 +57,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            ${{ steps.step_one.outputs.RESULTS }}
+            ${{ steps.pluto.outputs.RESULTS }}
           pr_number: ${{ github.event.number }}
       - name: pwd
         run: pwd
