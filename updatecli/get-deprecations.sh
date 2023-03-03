@@ -16,5 +16,5 @@ get_deprecations () {
     pluto detect-helm 
     kubectl get namespaces
 }
-$(get_deprecations)
+$(get_deprecations) > output.txt
 OUTPUT=$(get_deprecations)
