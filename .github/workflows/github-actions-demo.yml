@@ -46,6 +46,13 @@ jobs:
         run: echo "SELECTED_COLOR=green" >> $GITHUB_OUTPUT
       - name: Get color
         run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+      - name: Set the value in bash
+        id: step_one
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "JSON_RESPONSE<<$EOF" >> $GITHUB_ENV
+          curl https://example.com >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
       - name: run pluto 
         id: pluto
         run: bash ./updatecli/get-deprecations.sh 
