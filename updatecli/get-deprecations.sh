@@ -12,6 +12,7 @@ NAME=sam && echo "$CURRENT_ITER_ENVIRONMENT"
 echo "$NAME"
 aks_name=`yq -r '.environments[].aks_name' ./updatecli/values.github-action.yaml`
 aks_resource_group=`yq -r '.environments[].aks_resource_group' ./updatecli/values.github-action.yaml`
+aks_subscription=`yq -r '.environments[].aks_subscription' ./updatecli/values.github-action.yaml`
 
 
 # $aks_name := (index .environments $environment).aks_name
@@ -20,7 +21,8 @@ aks_resource_group=`yq -r '.environments[].aks_resource_group' ./updatecli/value
 get_dep() {
     az aks get-credentials \
         --resource-group "$aks_resource_group" \
-        --name "$aks_name" --admin
+        --name "$aks_name" \
+        --subscription "${aks_subscription}"
     pluto detect-helm
 
 }
