@@ -10,11 +10,14 @@ aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatec
 # $aks_name := (index .environments $environment).aks_name
 # $aks_resource_group := (index .environments $environment).aks_resource_group
 # $aks_subscription := (index .environments $environment).aks_subscription
+
+az account set --subscription Pay-As-You-Go
+
 get_dep() {
     az aks get-credentials --overwrite-existing  \
          --name "$aks_name" \
          --resource-group "$aks_resource_group" \
-       pluto detect-helm
+         | pluto detect-helm -owide
 }
 
 DEP=$(get_dep)
