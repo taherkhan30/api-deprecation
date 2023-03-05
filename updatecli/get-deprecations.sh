@@ -19,12 +19,10 @@ aks_subscription=`yq -r '.environments[].aks_subscription' ./updatecli/values.gi
 # $aks_resource_group := (index .environments $environment).aks_resource_group
 # $aks_subscription := (index .environments $environment).aks_subscription
 get_dep() {
-    az aks get-credentials \
-        --resource-group "$aks_resource_group" \
-        --name "$aks_name" \
-        --subscription "${aks_subscription}" \
-    pluto detect-helm
-
+    az aks get-credentials --overwrite-existing  \
+         --name "$aks_name" \
+         --resource-group "$aks_resource_group"
+       
 }
 
 DEP=$(get_dep)
