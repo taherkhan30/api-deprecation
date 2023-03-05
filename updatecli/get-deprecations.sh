@@ -7,12 +7,10 @@
 
 # "${DEPLOY_ENV}"
 # $environment := requiredEnv "CURRENT_ITER_ENVIRONMENT"
-NAME=sam; echo "$CURRENT_ITER_ENVIRONMENT"
-NAME=sam && echo "$CURRENT_ITER_ENVIRONMENT"
-echo "$NAME"
-aks_name=`yq -r '.environments[].aks_name' ./updatecli/values.github-action.yaml`
-aks_resource_group=`yq -r '.environments[].aks_resource_group' ./updatecli/values.github-action.yaml`
-aks_subscription=`yq -r '.environments[].aks_subscription' ./updatecli/values.github-action.yaml`
+environment=sam; echo "$CURRENT_ITER_ENVIRONMENT"
+aks_name=`yq -r '.environments.${environment}.aks_name' ./updatecli/values.github-action.yaml`
+aks_resource_group=`yq -r '.environments.${environment}.aks_resource_group' ./updatecli/values.github-action.yaml`
+
 
 
 # $aks_name := (index .environments $environment).aks_name
