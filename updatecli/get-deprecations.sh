@@ -13,7 +13,7 @@ aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatec
 get_dep() {
     az aks get-credentials --overwrite-existing  \
          --name "$aks_name" \
-         --resource-group "$aks_resource_group"
+         --resource-group "$aks_resource_group" \
        pluto detect-helm
 }
 
