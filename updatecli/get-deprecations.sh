@@ -9,7 +9,7 @@ aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatec
 az account set --subscription Pay-As-You-Go
 
 az aks get-credentials --name "$aks_name" --resource-group "$aks_resource_group" --admin --overwrite-existing 
-`pluto detect-helm -owide`
+`./pluto detect-helm -owide`
 
 
 
