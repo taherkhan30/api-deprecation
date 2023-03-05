@@ -22,7 +22,7 @@ get_dep() {
     az aks get-credentials \
         --resource-group "$aks_resource_group" \
         --name "$aks_name" \
-        --subscription "${aks_subscription}"
+        --subscription "${aks_subscription}" \
     pluto detect-helm
 
 }
