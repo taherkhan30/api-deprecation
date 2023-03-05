@@ -10,8 +10,8 @@
 NAME=sam; echo "$CURRENT_ITER_ENVIRONMENT"
 NAME=sam && echo "$CURRENT_ITER_ENVIRONMENT"
 echo "$CURRENT_ITER_ENVIRONMENT"
-aks_name=`yq -r '.environments[].aks_name' values.github-action.yaml`
-aks_resource_group=`yq -r '.environments[].aks_resource_group' values.github-action.yaml`
+aks_name=`yq -r '.environments[].aks_name' ${GITHUB_WORKSPACE}/values.github-action.yaml`
+aks_resource_group=`yq -r '.environments[].aks_resource_group' ${GITHUB_WORKSPACE}values.github-action.yaml`
 
 
 # $aks_name := (index .environments $environment).aks_name
