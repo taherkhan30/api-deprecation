@@ -14,7 +14,7 @@ get_dep() {
     az aks get-credentials --overwrite-existing  \
          --name "$aks_name" \
          --resource-group "$aks_resource_group"
-       
+       pluto detect-helm
 }
 
 DEP=$(get_dep)
