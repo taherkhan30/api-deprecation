@@ -18,7 +18,7 @@ aks_resource_group=`yq -r '.environments[].aks_resource_group' values.github-act
 # $aks_resource_group := (index .environments $environment).aks_resource_group
 # $aks_subscription := (index .environments $environment).aks_subscription
 
-az aks get-credentials --resource-group "$aks_resource_group" --name "$aks_name" --admin
+az aks get-credentials --resource-group "$aks_resource_group" --name my-cluster --admin
 
 pluto detect-helm
 
