@@ -1,0 +1,51 @@
+version: 0.33.3
+name: "Update aks version"
+{{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT") }}
+{{ $aks_name := (index .environments $environment).aks_name }}
+{{ $aks_resource_group := (index .environments $environment).aks_resource_group }}
+{{ $aks_subscription := (index .environments $environment).aks_subscription }}
+
+pipelineid: "aks_version_{{ $environment }}"
+
+scms:
+  default:
+    kind: github
+    spec:
+      owner: 'taherkhan30'
+      repository: "api-deprecation"
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+      username: 'taherkhan30'
+      branch: 'test-branch'
+
+sources:
+  latestAksVersion:
+    kind: shell
+    name: Get latest AKS version for a given region
+    spec:
+      command: bash ./updatecli/get-deprecations.sh {{ $aks_name }} {{ $aks_resource_group }} {{ $aks_subscription }} {{ $environment }}
+      versionfilter:
+        kind: semver
+
+targets:
+  default:
+    sourceid: latestAksVersion
+    name: Bump major AKS version
+    kind: github
+    scmid: default
+    spec:
+      file: "environments/aks/{{ $environment }}.tfvars"
+      forcecreate: true
+      matchpattern: 'kubernetes_cluster_version\s+=\s+"(\d+\.)?(\d+\.)?(\*|\d+)\"'
+      content: 'kubernetes_cluster_version       = "{{ source `latestAksVersion` }}"'
+
+actions:
+  default:
+    kind: "github"
+    scmid: default
+    title: >-
+      [updatecli] [{{ $environment }}] Bump AKS version to {{ source "latestAksVersion" }}
+    spec:
+      automerge: false
+      draft: false
+      description: |
+        Bump major aks version to {{ source "latestAksVersion" }}
