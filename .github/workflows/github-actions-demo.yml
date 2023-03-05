@@ -48,7 +48,7 @@ jobs:
         run: |
           yq -r '.environments | to_entries | map(select(.value.enabled == true)) | .[].key' updatecli/values.github-action.yaml | while read i
           do
-              CURRENT_ITER_ENVIRONMENT="$i" ./updatecli/get-deprecations.sh > output.txt
+              CURRENT_ITER_ENVIRONMENT="$i" bash ./updatecli/get-deprecations.sh > output.txt
 
           done
         env:
