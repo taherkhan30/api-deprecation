@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
+set -x
 
-
-# environment=sam; echo "$CURRENT_ITER_ENVIRONMENT"
 environment="$CURRENT_ITER_ENVIRONMENT"
 aks_name=`yq ".environments.$environment.aks_name" ./updatecli/values.github-action.yaml`
 aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatecli/values.github-action.yaml`
+az account set --subscription Pay-As-You-Go
 
-az aks get-credentials --name "$aks_name" --resource-group "$aks_resource_group" 
-
-kubectl get pods
-pluto
-
-
+{
+printf "\n\nTrying cluster $aks_name $aks_resource_group\n"
+az aks get-credentials \
+    --resource-group $aks_resource_group \
+    --name $aks_name --admin
+$(kubectl get pods --context "$aks_name-admin" --all-namespaces=true -o)
+}
 
 
 # {{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT") }}
