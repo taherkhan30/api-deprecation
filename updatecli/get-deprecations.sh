@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 
-environment=sam; echo "$CURRENT_ITER_ENVIRONMENT"
-aks_name          =`yq ".environments.$environment.aks_name"           ./updatecli/values.github-action.yaml`
-# aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatecli/values.github-action.yaml`
+# environment=sam; echo "$CURRENT_ITER_ENVIRONMENT"
+environment="$CURRENT_ITER_ENVIRONMENT"
+aks_name=`yq ".environments.$environment.aks_name" ./updatecli/values.github-action.yaml`
+aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatecli/values.github-action.yaml`
 
 
 # $aks_name := (index .environments $environment).aks_name
