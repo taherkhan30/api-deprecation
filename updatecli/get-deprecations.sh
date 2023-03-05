@@ -6,21 +6,13 @@ environment="$CURRENT_ITER_ENVIRONMENT"
 aks_name=`yq ".environments.$environment.aks_name" ./updatecli/values.github-action.yaml`
 aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatecli/values.github-action.yaml`
 
-
-# $aks_name := (index .environments $environment).aks_name
-# $aks_resource_group := (index .environments $environment).aks_resource_group
-# $aks_subscription := (index .environments $environment).aks_subscription
-
 az account set --subscription Pay-As-You-Go
 
-get_dep() {
-    az aks get-credentials --overwrite-existing  \
-         --name "$aks_name" \
-         --resource-group "$aks_resource_group" \
-         | pluto detect-helm -owide
-}
+az aks get-credentials --overwrite-existing  --name "$aks_name" --resource-group "$aks_resource_group" \
 
-DEP=$(get_dep)
+pluto detect-helm -owide
+
+
 
 # {{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT") }}
 # {{ $aks_name := (index .environments $environment).aks_name }}
