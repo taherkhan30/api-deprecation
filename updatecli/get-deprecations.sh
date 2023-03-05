@@ -12,8 +12,8 @@ for env in $environment
 do
 
     az aks get-credentials --name "$aks_name" --resource-group "$aks_resource_group" --admin --overwrite-existing 
-    pluto detect-helm -owide
-    
+
+
 done
 
 
