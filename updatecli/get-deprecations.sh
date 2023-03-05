@@ -11,7 +11,7 @@ printf "\n\nTrying cluster $aks_name $aks_resource_group\n"
 az aks get-credentials \
     --resource-group $aks_resource_group \
     --name $aks_name --admin
-$(kubectl get pods --context "$aks_name-admin" --all-namespaces=true -o)
+$(kubectl get pods --context "$aks_name-admin" --all-namespaces=true)
 }
 
 
