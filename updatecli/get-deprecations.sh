@@ -6,15 +6,10 @@ environment="$CURRENT_ITER_ENVIRONMENT"
 aks_name=`yq ".environments.$environment.aks_name" ./updatecli/values.github-action.yaml`
 aks_resource_group=`yq ".environments.$environment.aks_resource_group" ./updatecli/values.github-action.yaml`
 
-az account set --subscription Pay-As-You-Go
+az aks get-credentials --name "$aks_name" --resource-group "$aks_resource_group" 
 
-for env in $environment
-do
-
-    az aks get-credentials --name "$aks_name" --resource-group "$aks_resource_group" --admin --overwrite-existing 
-
-
-done
+kubectl get namespaces
+pluto
 
 
 
