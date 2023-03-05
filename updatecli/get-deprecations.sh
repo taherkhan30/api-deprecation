@@ -1,17 +1,9 @@
 #!/usr/bin/env bash
 
-# {{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT") }}
-# {{ $aks_name := (index .environments $environment).aks_name }}
-# {{ $aks_resource_group := (index .environments $environment).aks_resource_group }}
-# {{ $aks_subscription := (index .environments $environment).aks_subscription }}
 
-# "${DEPLOY_ENV}"
-# $environment := requiredEnv "CURRENT_ITER_ENVIRONMENT"
 environment=sam; echo "$CURRENT_ITER_ENVIRONMENT"
-env=echo "{environment}"
-aks_name=`yq -r '.environments.\"$environment"\.aks_name' ./updatecli/values.github-action.yaml`
-aks_resource_group=`yq -r '.environments.\"$environment"\.aks_resource_group' ./updatecli/values.github-action.yaml`
-
+aks_name=`yq -r ".environments.$environment.aks_name" ./updatecli/values.github-action.yaml`
+aks_resource_group=`yq -r ".environments.$environment.aks_resource_group" ./updatecli/values.github-action.yaml`
 
 
 # $aks_name := (index .environments $environment).aks_name
@@ -25,6 +17,30 @@ get_dep() {
 }
 
 DEP=$(get_dep)
+
+# {{ $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT") }}
+# {{ $aks_name := (index .environments $environment).aks_name }}
+# {{ $aks_resource_group := (index .environments $environment).aks_resource_group }}
+# {{ $aks_subscription := (index .environments $environment).aks_subscription }}
+
+# "${DEPLOY_ENV}"
+# $environment := requiredEnv "CURRENT_ITER_ENVIRONMENT"
+
+# yq eval '.environments "${{ environment }}"' -i values.github-action.yaml
+# echo ${environment}
+
+# yq -r ".environments.$environment.aks_name" values.github-action.yaml
+
+#  myenv=$image 
+ 
+#  yq e '.environments.sbox=env(myenv)' values.github-action.yaml
+
+# myenv="cat meow"
+# yq --null-input '.a = env(myenv)'
+
+# yq e '.environments = strenv(VAL)' values.github-action.yaml
+
+# .rnvironemnt = env(environment)
 
 # $environment := (requiredEnv "CURRENT_ITER_ENVIRONMENT")
 # $aks_name := (index .environments $environment).aks_name
@@ -59,3 +75,6 @@ DEP=$(get_dep)
 #     echo "i"
 #     # az aks get-credentials --resource-group "${aks_rg_array}" --name "${aks_array}" --admin
 # done 
+
+
+# aks_name=`yq -e '.environments."{$environment}".aks_name' values.github-action.yaml`
