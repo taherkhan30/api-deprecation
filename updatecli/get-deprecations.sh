@@ -10,7 +10,6 @@ az account set --subscription Pay-As-You-Go
 
 az aks get-credentials --name "$aks_name" --resource-group "$aks_resource_group" --admin --overwrite-existing 
 
-pluto detect-helm -owide
 
 
 
