@@ -8,8 +8,9 @@
 # "${DEPLOY_ENV}"
 # $environment := requiredEnv "CURRENT_ITER_ENVIRONMENT"
 environment=sam; echo "$CURRENT_ITER_ENVIRONMENT"
-aks_name=`yq -r '.environments.${environment}.aks_name' ./updatecli/values.github-action.yaml`
-aks_resource_group=`yq -r '.environments.${environment}.aks_resource_group' ./updatecli/values.github-action.yaml`
+env=echo "{environment}"
+aks_name=`yq -r '.environments.\"$environment"\.aks_name' ./updatecli/values.github-action.yaml`
+aks_resource_group=`yq -r '.environments.\"$environment"\.aks_resource_group' ./updatecli/values.github-action.yaml`
 
 
 
