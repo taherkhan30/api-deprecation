@@ -1,0 +1,16 @@
+github:
+  branch: "test-branch"
+  owner: "taherkhan30"
+  repository: "taherkhan30/api-deprecation"
+  token: ${{ secrets.GITHUB_TOKEN }}
+environments:
+  sbox:
+    enabled: true
+    aks_name: my-cluster
+    aks_resource_group: rg-cluster
+    aks_subscription: Pay-As-You-Go
+  demo:
+    enabled: true
+    aks_name: my-cluster2
+    aks_resource_group: rg-cluster2
+    aks_subscription: Pay-As-You-Go
