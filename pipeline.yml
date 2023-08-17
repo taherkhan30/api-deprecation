@@ -35,11 +35,16 @@ steps:
   submodules: true
   persistCredentials: true
 
-- pwsh: |
-    Get-ChildItem $(System.DefaultWorkingDirectory) -Recurse
-  name: DebugCheckout
-  displayName: Debug script checkout
+# - pwsh: |
+#     Get-ChildItem $(System.DefaultWorkingDirectory) -Recurse
+#   name: DebugCheckout
+#   displayName: Debug script checkout
 
+- bash: |
+   brew install gitleaks
+   
+   gitleaks --repo-path=. --config=.gitleaks.toml --verbose --pretty --redact
+  displayName: 'Bash Script'
 - task: CmdLine@2
   displayName: 'Install Pluto' # update Pluto version if needed in wget and tar command
   inputs:
