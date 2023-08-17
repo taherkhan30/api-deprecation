@@ -40,11 +40,12 @@ steps:
 #   name: DebugCheckout
 #   displayName: Debug script checkout
 
-- bash: |
-   brew install gitleaks
-   
-   gitleaks --repo-path=. --config=.gitleaks.toml --verbose --pretty --redact
-  displayName: 'Bash Script'
+- task: Gitleaks@2
+  inputs:
+    scanlocation: '$(Build.SourcesDirectory)'
+    configtype: 'predefined'
+    predefinedconfigfile: 'GitleaksUdmCombo.toml'
+    reportformat: 'sarif'
 - task: CmdLine@2
   displayName: 'Install Pluto' # update Pluto version if needed in wget and tar command
   inputs:
