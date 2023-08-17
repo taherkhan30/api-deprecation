@@ -45,6 +45,7 @@ steps:
     scanlocation: '$(Build.SourcesDirectory)'
     configtype: 'predefined'
     predefinedconfigfile: 'GitleaksUdmCombo.toml'
+    scanmode: 'nogit'
     reportformat: 'sarif'
 - task: CmdLine@2
   displayName: 'Install Pluto' # update Pluto version if needed in wget and tar command
